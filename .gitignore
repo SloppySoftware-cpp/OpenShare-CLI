@@ -1,0 +1,18 @@
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+.ssh/
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+# Generated files and local editor settings
+*.code-workspace
+*.vsix
+.vscode/
+node_modules/
+.claude/
+*.log
+.DS_Store
+Thumbs.db
