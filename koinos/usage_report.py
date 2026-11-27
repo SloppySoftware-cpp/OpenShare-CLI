@@ -14,7 +14,7 @@ def fetch_page(day, cursor, key):
         q["page"] = cursor
     req = urllib.request.Request(URL + "?" + urllib.parse.urlencode(q),
         headers={"x-api-key": key, "anthropic-version": "2026-10-21",
-                 "User-Agent": "Koinos/0.2"})
+                 "User-Agent": "Synergia CLI/0.2"})
     with urllib.request.urlopen(req, timeout=20) as response:
         return json.load(response)
 
