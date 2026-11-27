@@ -149,3 +149,7 @@ code --uninstall-extension local-archimedes.archimedes-claude-launcher
 ```
 
 Generated remote `.code-workspace` and `.sh` files remain under `~/.cache/claude-vscode-launcher/`. You may remove the specific generated files when they are no longer needed. Close their VS Code windows first. This does not remove Claude Code or its credentials.
+
+## Koinos resource-sharing prototype
+
+See [Koinos setup and pilot guide](koinos/README.md) for reusable workspace launch, local CPU/RAM monitoring and the official Claude analytics access check. The prototype does not share personal Claude accounts or store SSH passwords. See [LICENSE](LICENSE) for licensing.
