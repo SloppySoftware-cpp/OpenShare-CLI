@@ -81,7 +81,7 @@ printf 'For an existing session, use /login only if you need to change accounts.
 $launch += "`nexec claude$flags"
 $launch = $launch -replace "`r`n", "`n"
 # Prefer interactive authentication; OpenSSH reads the password itself.
-$sshOptions = @('-o','ConnectTimeout=15','-o','PreferredAuthentications=keyboard-interactive,password,publickey')
+$sshOptions = @('-o','ConnectTimeout=15','-o','PreferredAuthentications=publickey,keyboard-interactive,password')
 Write-Host ''
 Write-Host '=== SSH AUTHENTICATION ===' -ForegroundColor Cyan
 Write-Host "Connecting to $target. Type your server password when SSH asks."
@@ -176,4 +176,8 @@ $encodedPath = $segments -join '/'
 $uri = 'vscode-remote://ssh-remote+' + [Uri]::EscapeDataString($target) + $encodedPath
 & $code.Source --new-window --file-uri $uri
 if ($LASTEXITCODE -ne 0) { throw 'VS Code could not open the remote workspace.' }
+$profileDir = Join-Path $env:LOCALAPPDATA 'OpenShare-CLI'
+New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
+Set-Content -LiteralPath (Join-Path $profileDir 'last-workspace.txt') -Value $uri -Encoding UTF8
+Write-Host 'Workspace saved locally. Next time use open-last-workspace.bat.' -ForegroundColor Green
 Write-Host 'VS Code launch requested. Complete any prompts in the new window.' -ForegroundColor Green
