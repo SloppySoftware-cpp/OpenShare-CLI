@@ -149,15 +149,3 @@ code --uninstall-extension local-archimedes.archimedes-claude-launcher
 ```
 
 Generated remote `.code-workspace` and `.sh` files remain under `~/.cache/claude-vscode-launcher/`. You may remove the specific generated files when they are no longer needed. Close their VS Code windows first. This does not remove Claude Code or its credentials.
-
-## Development and contributions
-
-Issues and pull requests are welcome, subject to the repository's eventual license and contribution terms. Useful improvements include support for additional SSH configurations, better launch diagnostics, automated Windows/Linux integration tests, and a reproducible VSIX packaging workflow.
-
-When reporting a bug, include the Windows and VS Code versions, remote Linux distribution, launch mode, and a redacted error message. Never include passwords, login codes, tokens, or private server details.
-
-## Project status and license
-
-This is an initial implementation. The launcher and embedded extension source have been inspected, but live Windows-to-Linux SSH, VS Code startup, and Claude authentication have not been verified in an end-to-end test. Automatic launch may depend on VS Code extension activation and workspace trust; use the documented fallback if necessary.
-
-No license has been selected in this package. Before distributing it as open-source software, confirm you have the right to publish the code and add a suitable `LICENSE` file (for example, MIT if you want a permissive license). Third-party products and extensions retain their respective licenses and terms.
