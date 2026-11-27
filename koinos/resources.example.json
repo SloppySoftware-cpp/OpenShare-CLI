@@ -1,0 +1,6 @@
+[
+  {
+    "name": "Shared development server",
+    "ssh_alias": "dev-pool"
+  }
+]
