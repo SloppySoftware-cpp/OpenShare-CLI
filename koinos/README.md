@@ -1,4 +1,4 @@
-# KOINOS — resource-sharing prototype
+# SYNERGIA CLI — resource-sharing prototype
 
 This branch extends the Windows Claude Code launcher with a reusable workspace and a local resource dashboard. It shares authorized compute, not named-user Claude subscriptions. It is not a production multi-user broker.
 
