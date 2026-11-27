@@ -36,3 +36,6 @@ For actual metrics, copy resources.example.json to resources.local.json, edit na
 
 ## Test status
 This branch is an implementation prototype. Real Windows, SSH and Anthropic API tests require the organization's machines, plan and keys. The demo is not real telemetry. Do not expose the localhost prototype to the network.
+
+## 5. Historical Claude Code analytics (Console organizations)
+Run `python koinos/usage_report.py` from the repository root after securely configuring the authorized `ANTHROPIC_ADMIN_KEY`. It reads all pages for one UTC date and aggregates sessions, input/output tokens and estimated cost by actor. Add `--date YYYY-MM-DD` to select another day. For the local admin-workstation dashboard, run `python dashboard.py --analytics` from `koinos/` with your private inventory configured. The analytics page contains user identifiers: do not expose the localhost server, and use this mode only on a restricted administrator workstation with organizational approval. The Enterprise path remains an access probe, not a fully integrated report. No report establishes remaining personal subscription quota, real-time activity or eligibility to use another account. The dashboard shows a UTC sampling timestamp for compute metrics.
