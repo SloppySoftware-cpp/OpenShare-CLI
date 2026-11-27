@@ -81,7 +81,7 @@ def main():
                 except (OSError,ValueError,KeyError,TypeError,ArithmeticError):
                     return self.respond(503,"Analytics unavailable. Check plan, key permissions and date.")
                 rows_html="".join("<tr>"+"".join("<td>"+html.escape(str(r[k]))+"</td>" for k in ("actor","sessions","input_tokens","output_tokens","estimated_cost_usd"))+"</tr>" for r in result["rows"])
-                return self.respond(200,'<!doctype html><meta charset="utf-8"><title>Koinos analytics</title><h1>Historical Claude Code activity</h1><p>UTC date: '+day+' | Remaining quota: unknown. Not live occupancy.</p><p><a href="/">Back</a></p><table border="1"><thead><tr><th>Actor</th><th>Sessions</th><th>Input tokens</th><th>Output tokens</th><th>Estimated USD</th></tr></thead><tbody>'+rows_html+'</tbody></table>')
+                return self.respond(200,'<!doctype html><meta charset="utf-8"><title>Synergia CLI analytics</title><h1>Historical Claude Code activity</h1><p>UTC date: '+day+' | Remaining quota: unknown. Not live occupancy.</p><p><a href="/">Back</a></p><table border="1"><thead><tr><th>Actor</th><th>Sessions</th><th>Input tokens</th><th>Output tokens</th><th>Estimated USD</th></tr></thead><tbody>'+rows_html+'</tbody></table>')
             if not self.valid_host() or self.path!="/":
                 return self.respond(404,"Not found")
             if args.demo:
@@ -99,7 +99,7 @@ def main():
             mode="DEMO - sample data, connections disabled" if args.demo else "Live SSH samples - not Claude subscription quota"
             analytics_link='<p><a href="/analytics">Daily Claude Code analytics (admin workstation only)</a></p>' if args.analytics and not args.demo else ""
             sampled=dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
-            self.respond(200,'<!doctype html><html><meta charset="utf-8"><title>Koinos</title><style>body{font:16px system-ui;max-width:1000px;margin:50px auto;padding:20px;color:#18253a;background:#f7f9fc}table{border-collapse:collapse;width:100%;background:white}td,th{text-align:left;padding:16px;border-bottom:1px solid #ddd}button,a{color:#16428c}button{padding:8px}</style><h1>KOINOS | Resource dashboard</h1><p>'+mode+' | Sampled '+sampled+'</p>'+analytics_link+'<p>Low load is a snapshot, not a reservation or permission to interrupt someone. Use only assigned SSH identities. Connect opens SSH, then run Claude under your own account.</p><p><a href="/">Refresh samples</a></p><table><thead><tr><th>Resource</th><th>CPU</th><th>RAM</th><th>Load</th><th>Action</th></tr></thead><tbody>'+''.join(body)+'</tbody></table></html>')
+            self.respond(200,'<!doctype html><html><meta charset="utf-8"><title>Synergia CLI</title><style>body{font:16px system-ui;max-width:1000px;margin:50px auto;padding:20px;color:#18253a;background:#f7f9fc}table{border-collapse:collapse;width:100%;background:white}td,th{text-align:left;padding:16px;border-bottom:1px solid #ddd}button,a{color:#16428c}button{padding:8px}</style><h1>SYNERGIA CLI | Resource dashboard</h1><p>'+mode+' | Sampled '+sampled+'</p>'+analytics_link+'<p>Low load is a snapshot, not a reservation or permission to interrupt someone. Use only assigned SSH identities. Connect opens SSH, then run Claude under your own account.</p><p><a href="/">Refresh samples</a></p><table><thead><tr><th>Resource</th><th>CPU</th><th>RAM</th><th>Load</th><th>Action</th></tr></thead><tbody>'+''.join(body)+'</tbody></table></html>')
         def do_POST(self):
             if not self.valid_host() or self.path!="/connect" or self.headers.get("Origin")!=origin or args.demo or os.name!="nt":
                 return self.respond(403,"Connection not permitted")
@@ -117,7 +117,7 @@ def main():
             self.send_response(303)
             self.send_header("Location","/")
             self.end_headers()
-    print("Koinos local prototype: "+origin)
+    print("Synergia CLI local prototype: "+origin)
     ThreadingHTTPServer(("127.0.0.1",8765),Handler).serve_forever()
 
 if __name__=="__main__":
